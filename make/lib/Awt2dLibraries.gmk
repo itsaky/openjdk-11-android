@@ -308,7 +308,7 @@ ifeq ($(findstring $(OPENJDK_TARGET_OS), windows macosx), )
     LIBAWT_XAWT_LIBS := $(LIBM) -lawt -lXext -lX11 -lXrender $(LIBDL) -lXtst -lXi -ljava -ljvm
 
     ifeq ($(OPENJDK_TARGET_OS), linux)
-      LIBAWT_XAWT_LIBS += -lpthread
+      LIBAWT_XAWT_LIBS += -lc
     endif
 
     ifeq ($(TOOLCHAIN_TYPE), gcc)
@@ -898,14 +898,14 @@ ifeq ($(ENABLE_HEADLESS_ONLY), false)
 
   ifeq ($(OPENJDK_TARGET_OS), macosx)
     LIBSPLASHSCREEN_LIBS += \
-        $(LIBM) -lpthread -liconv -losxapp \
+        $(LIBM) -lc -liconv -losxapp \
         -framework ApplicationServices \
         -framework Foundation \
         -framework Cocoa
   else ifeq ($(OPENJDK_TARGET_OS), windows)
     LIBSPLASHSCREEN_LIBS += kernel32.lib user32.lib gdi32.lib delayimp.lib $(WIN_JAVA_LIB) jvm.lib
   else
-    LIBSPLASHSCREEN_LIBS += $(X_LIBS) -lX11 -lXext $(LIBM) -lpthread -ldl
+    LIBSPLASHSCREEN_LIBS += $(X_LIBS) -lX11 -lXext $(LIBM) -lc -ldl
   endif
 
   LIBSPLASHSCREEN_HEADER_DIRS += \

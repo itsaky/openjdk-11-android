@@ -125,7 +125,7 @@ AC_DEFUN_ONCE([LIB_SETUP_LIBRARIES],
 
   # Threading library
   if test "x$OPENJDK_TARGET_OS" = xlinux || test "x$OPENJDK_TARGET_OS" = xaix; then
-    BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lpthread"
+    BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lc"
   elif test "x$OPENJDK_TARGET_OS" = xsolaris; then
     BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lthread"
   fi

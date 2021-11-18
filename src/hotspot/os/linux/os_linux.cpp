@@ -102,7 +102,11 @@
 # include <syscall.h>
 # include <sys/sysinfo.h>
 # include <sys/ipc.h>
+
+// We have a custom implementation of Shared V Memory
+// It is passed to the linker as '-lcustom_shmem'
 # include <sys/shm.h>
+
 # include <link.h>
 # include <stdint.h>
 # include <inttypes.h>
@@ -111,7 +115,7 @@
 # include <malloc.h>
 #endif
 
-#ifndef __ANDROID__ 
+#ifndef __ANDROID__
 # include <gnu/libc-version.h>
 #endif
 
@@ -123,11 +127,9 @@
   #include <sched.h>
 #endif
 
-#ifdef __ANDROID__
+#if defined(__ANDROID__) && !defined(SHMLBA)
 // getpagesize defined in unistd.h
 #define SHMLBA (getpagesize())
-    
-// from https://android.googlesource.com/platform/bionic/+/refs/heads/master/libc/bionic/getloadavg.cpp
 int getloadavg(double averages[], int n) {
   if (n < 0) return -1;
   if (n > 3) n = 3;
@@ -138,7 +140,9 @@ int getloadavg(double averages[], int n) {
   }
   return n;
 }
-#endif // __ANDROID__
+#endif // __ANDROID__ && SHMLBA
+
+
 
 // if RUSAGE_THREAD for getrusage() has not been defined, do it here. The code calling
 // getrusage() is prepared to handle the associated failure.

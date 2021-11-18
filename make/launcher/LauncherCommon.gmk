@@ -189,7 +189,7 @@ define SetupBuildLauncherBody
           -L$(call FindLibDirForModule, java.base)/jli, \
       LIBS := $(JDKEXE_LIBS) $$($1_LIBS), \
       LIBS_unix := $$($1_LIBS_unix), \
-      LIBS_linux := -lpthread -ljli $(LIBDL), \
+      LIBS_linux := -lc -ljli $(LIBDL), \
       LIBS_macosx := -ljli, \
       LIBS_solaris := -ljli -lthread $(LIBDL), \
       LIBS_windows := $$($1_WINDOWS_JLI_LIB) \

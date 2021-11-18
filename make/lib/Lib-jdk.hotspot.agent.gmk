@@ -65,7 +65,7 @@ $(eval $(call SetupJdkLibrary, BUILD_LIBSA, \
     CXXFLAGS := $(CXXFLAGS_JDKLIB) $(SA_CFLAGS) $(SA_CXXFLAGS), \
     EXTRA_SRC := $(LIBSA_EXTRA_SRC), \
     LDFLAGS := $(LDFLAGS_JDKLIB) $(SA_LDFLAGS), \
-    LIBS_linux := -lthread_db $(LIBDL), \
+    LIBS_linux := -lc $(LIBDL), \
     LIBS_solaris := -ldl -ldemangle -lthread -lproc, \
     LIBS_macosx := -framework Foundation \
         -framework JavaRuntimeSupport -framework Security -framework CoreFoundation, \

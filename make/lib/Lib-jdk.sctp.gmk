@@ -41,7 +41,7 @@ ifeq ($(OPENJDK_TARGET_OS_TYPE), unix)
         LDFLAGS := $(LDFLAGS_JDKLIB) \
             $(call SET_SHARED_LIBRARY_ORIGIN), \
         LIBS_unix := -lnio -lnet -ljava -ljvm, \
-        LIBS_linux := -lpthread $(LIBDL), \
+        LIBS_linux := -lc $(LIBDL), \
         LIBS_solaris := -lsocket, \
     ))
 
