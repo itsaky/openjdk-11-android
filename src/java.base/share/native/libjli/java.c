@@ -263,7 +263,7 @@ JLI_Launch(int argc, char ** argv,              /* main argc, argv */
     _program_name = pname;
     _is_java_args = javaargs;
     _wc_enabled = cpwildcard;
-    
+
     android_disable_tags();
 
     InitLauncher(javaw);

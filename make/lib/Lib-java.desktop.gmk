@@ -69,7 +69,6 @@ ifneq ($(OPENJDK_TARGET_OS), aix)
       LDFLAGS := $(LDFLAGS_JDKLIB) \
           $(call SET_SHARED_LIBRARY_ORIGIN), \
       LIBS_unix := -ljava -ljvm, \
-      LIBS_linux := $(ALSA_LIBS), \
       LIBS_macosx := -framework CoreAudio -framework CoreFoundation \
           -framework CoreServices -framework AudioUnit \
           -framework CoreMIDI -framework AudioToolbox $(LIBCXX), \
